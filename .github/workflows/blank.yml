@@ -1,0 +1,60 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+int main() {
+    int playerChoice;
+    int computerChoice;
+    int playerWins = 0;
+    int computerWins = 0;
+
+    srand(time(0)); // seed random number generator
+
+    while (true) {
+        std::cout << "Enter your choice (1-3):" << std::endl;
+        std::cout << "1. Rock" << std::endl;
+        std::cout << "2. Paper" << std::endl;
+        std::cout << "3. Scissors" << std::endl;
+
+        std::cin >> playerChoice;
+
+        computerChoice = rand() % 3 + 1; // generate random computer choice
+
+        std::cout << "Computer chose: ";
+        switch (computerChoice) {
+            case 1:
+                std::cout << "Rock" << std::endl;
+                break;
+            case 2:
+                std::cout << "Paper" << std::endl;
+                break;
+            case 3:
+                std::cout << "Scissors" << std::endl;
+                break;
+        }
+
+        if (playerChoice == computerChoice) {
+            std::cout << "Tie!" << std::endl;
+        } else if ((playerChoice == 1 && computerChoice == 3) ||
+                   (playerChoice == 2 && computerChoice == 1) ||
+                   (playerChoice == 3 && computerChoice == 2)) {
+            std::cout << "Player wins!" << std::endl;
+            playerWins++;
+        } else {
+            std::cout << "Computer wins!" << std::endl;
+            computerWins++;
+        }
+
+        std::cout << "Score - Player: " << playerWins << ", Computer: " << computerWins << std::endl;
+
+        char playAgain;
+        std::cout << "Play again? (y/n): ";
+        std::cin >> playAgain;
+
+        if (playAgain != 'y') {
+            break;
+        }
+    }
+
+    return 0;
+}
